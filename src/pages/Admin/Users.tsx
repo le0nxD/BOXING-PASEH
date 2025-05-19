@@ -140,7 +140,7 @@ const Users = () => {
     }
   };
 
-    const exportUsers = () => {
+   const exportUsers = () => {
     const headers = [
       "Pengguna",
       "Kontak",
@@ -155,7 +155,7 @@ const Users = () => {
       "Alamat",
     ];
 
-    const csvRows = users.map(user => [
+    const data = users.map(user => [
       user.full_name,
       `${user.whatsapp || '-'} ${user.instagram || '-'}`,
       user.height || '-',
@@ -167,37 +167,32 @@ const Users = () => {
       getAchievementsText(user) || '-',
       getUserTrainingDays(user) || '-',
       user.address || '-',
-    ].map(escapeCsvField).join(','));
+    ]);
 
-    const csvContent = [
-      headers.join(','),
-      ...csvRows
-    ].join('\n');
+    // Create a new workbook
+    const wb = XLSX.utils.book_new();
 
-    // Tambahkan UTF-8 BOM
-    const bom = '\uFEFF';
-    const csvData = bom + csvContent;
+    // Create a new worksheet
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
 
-    const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Users");
+
+    // Generate the Excel file
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const excelData = new Uint8Array(excelBuffer);
+    const blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    // Trigger the download
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.setAttribute("href", dataUri);
-    link.setAttribute("download", "users.csv");
+    link.href = url;
+    link.setAttribute("download", "users.xlsx");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  // Fungsi untuk escape field CSV
-  const escapeCsvField = (field) => {
-    if (field === null || field === undefined) {
-      return '';
-    }
-    let escapedField = String(field).replace(/"/g, '""');
-    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
-      escapedField = `"${escapedField}"`;
-    }
-    return escapedField;
-  };
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
