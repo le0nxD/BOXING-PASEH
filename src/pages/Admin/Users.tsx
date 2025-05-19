@@ -203,7 +203,6 @@ const Users = () => {
     document.body.removeChild(link);
   };
 
-
   // Function to escape CSV fields
   const escapeCsvField = (field) => {
     if (field === null || field === undefined) {
