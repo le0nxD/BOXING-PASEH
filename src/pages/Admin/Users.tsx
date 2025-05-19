@@ -197,10 +197,10 @@ const Users = () => {
     return '-';
   };
 
-  const getGenderIcon = (user) => {
-    if (user?.gender === 'male') return <Mars className="w-4 h-4" />;
-    if (user?.gender === 'female') return <Venus className="w-4 h-4" />;
-    return <User className="w-4 h-4" />;
+  const getGenderText = (user) => {
+    if (user?.gender === 'male') return 'Laki-Laki';
+    if (user?.gender === 'female') return 'Perempuan';
+    return '-';
   };
 
   const getAchievementsText = (user) => {
@@ -277,30 +277,10 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
-                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Lokasi
-                      <MapPin className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Gender
-                      <User className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Lahir
-                      <Calendar className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Prestasi
-                      <Award className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lahir</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
@@ -326,7 +306,7 @@ const Users = () => {
                     key={user.id}
                     className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-200"
                   >
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="flex items-center gap-3">
                         <ProfileImage
                           src={user.profile_photo}
@@ -336,13 +316,12 @@ const Users = () => {
                         <div>
                           <div className="font-medium text-black dark:text-white">{user.full_name}</div>
                           <div className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
                             {new Date(user.created_at).toLocaleDateString()}
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="space-y-1">
                         {user.whatsapp && (
                           <div className="flex items-center gap-2 text-black dark:text-white">
@@ -358,49 +337,47 @@ const Users = () => {
                         )}
                       </div>
                     </td>
-                     <td className="px-6 py-4 whitespace-nowrap">
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {user.height ?  `${user.height} cm` : '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div  className="text-black dark:text-white">
                         {user.weight ? `${user.weight} kg` : '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {user.institution || '-'}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-black dark:text-white">
-                         <MapPin className="w-4 h-4 text-gray-400" />
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
+                      <div className="text-black dark:text-white">
                         {getTrainingLocationText(user)}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-black dark:text-white">
-                        {getGenderIcon(user)}
-                        {user.gender || '-'}
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
+                      <div className="text-black dark:text-white">
+                        {getGenderText(user)}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                        {formatDate(user.birth_date)}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {getAchievementsText(user)}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {user.address || '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="flex items-center gap-2">
                         <select
                           value={user.role}
