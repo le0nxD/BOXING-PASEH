@@ -141,20 +141,22 @@ const Users = () => {
   };
 
   const exportUsers = () => {
-    const csv = users.map(user => ({
-      name: user.full_name,
-      role: user.role,
-      email: user.email,
-      whatsapp: user.whatsapp,
-      instagram: user.instagram,
-      institution: user.institution,
-      address: user.address,
-      created_at: user.created_at
+    const formattedUsers = users.map(user => ({
+      "Full Name": `"${user.full_name || '-'}"`,
+      "Role": `"${user.role || '-'}"`,
+      "Email": `"${user.email || '-'}"`,
+      "WhatsApp": `"${user.whatsapp || '-'}"`,
+      "Instagram": `"${user.instagram || '-'}"`,
+      "Institution": `"${user.institution || '-'}"`,
+      "Address": `"${user.address || '-'}"`,
+      "Birth Date": `"${user.birth_date ? new Date(user.birth_date).toLocaleDateString('id-ID') : '-'}"`,
+      "Training Days": `"${getUserTrainingDays(user) || '-'}"`,
+      "Created At": `"${new Date(user.created_at).toLocaleDateString('id-ID')}"`
     }));
 
-    const csvContent = "data:text/csv;charset=utf-8," + 
-      Object.keys(csv[0]).join(",") + "\n" +
-      csv.map(row => Object.values(row).join(",")).join("\n");
+    const csvContent = "data:text/csv;charset=utf-8," +
+      Object.keys(formattedUsers[0]).join(",") + "\n" +
+      formattedUsers.map(row => Object.values(row).join(",")).join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -164,6 +166,7 @@ const Users = () => {
     link.click();
     document.body.removeChild(link);
   };
+
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
