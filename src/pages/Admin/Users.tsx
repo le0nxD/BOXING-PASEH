@@ -141,67 +141,62 @@ const Users = () => {
   };
 
   const exportUsers = () => {
-    let table = `
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Role</th>
-            <th>Email</th>
-            <th>WhatsApp</th>
-            <th>Instagram</th>
-            <th>Institution</th>
-            <th>Address</th>
-            <th>Birth Date</th>
-            <th>Training Days</th>
-            <th>Created At</th>
-          </tr>
-        </thead>
-        <tbody>
-    `;
+    const headers = [
+      "Full Name",
+      "Role",
+      "Email",
+      "WhatsApp",
+      "Instagram",
+      "Institution",
+      "Address",
+      "Birth Date",
+      "Training Days",
+      "Created At"
+    ];
 
-    users.forEach(user => {
-      table += `
-        <tr>
-          <td>${user.full_name || '-'}</td>
-          <td>${user.role || '-'}</td>
-          <td>${user.email || '-'}</td>
-          <td>${user.whatsapp || '-'}</td>
-          <td>${user.instagram || '-'}</td>
-          <td>${user.institution || '-'}</td>
-          <td>${user.address || '-'}</td>
-          <td>${user.birth_date ? new Date(user.birth_date).toLocaleDateString('id-ID') : '-'}</td>
-          <td>${getUserTrainingDays(user) || '-'}</td>
-          <td>${new Date(user.created_at).toLocaleDateString('id-ID')}</td>
-        </tr>
-      `;
-    });
+    const csvRows = users.map(user => [
+      user.full_name,
+      user.role,
+      user.email,
+      user.whatsapp,
+      user.instagram,
+      user.institution,
+      user.address,
+      user.birth_date ? formatDate(user.birth_date) : '',
+      getUserTrainingDays(user),
+      formatDate(user.created_at)
+    ].map(escapeCsvField).join(','));
 
-    table += `
-        </tbody>
-      </table>
-    `;
+    const csvContent = [
+      headers.join(','),
+      ...csvRows
+    ].join('\n');
 
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>User Data</title>
-      </head>
-      <body>
-        ${table}
-      </body>
-      </html>
-    `;
+    // Add UTF-8 BOM
+    const bom = '\uFEFF';
+    const csvData = bom + csvContent;
 
-    const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+    const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
     const link = document.createElement("a");
     link.setAttribute("href", dataUri);
-    link.setAttribute("download", "users.html");
+    link.setAttribute("download", "users.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+
+  // Function to escape CSV fields
+  const escapeCsvField = (field) => {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    let escapedField = String(field).replace(/"/g, '""');
+    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
+      escapedField = `"${escapedField}"`;
+    }
+    return escapedField;
+  };
+
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
