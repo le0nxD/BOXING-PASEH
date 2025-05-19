@@ -199,19 +199,6 @@ const Users = () => {
     return escapedField;
   };
 
-  // Function to escape CSV fields
-  const escapeCsvField = (field) => {
-    if (field === null || field === undefined) {
-      return '';
-    }
-    let escapedField = String(field).replace(/"/g, '""');
-    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
-      escapedField = `"${escapedField}"`;
-    }
-    return escapedField;
-  };
-
-
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
   const getPageNumbers = () => {
