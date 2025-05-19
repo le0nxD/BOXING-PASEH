@@ -106,21 +106,21 @@ const Navbar = () => {
                 >
                   <Link 
                     to="/officials" 
-                    className="block px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Official
                   </Link>
                   <Link 
                     to="/coaches" 
-                    className="block px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Pelatih
                   </Link>
                   <Link 
                     to="/athletes" 
-                    className="block px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Atlet
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
                       <Link
                         to="/profile"
-                        className="flex items-center px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                        className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                         onClick={() => setIsProfileMenuOpen(false)}
                       >
                         <User className="w-4 h-4 mr-2" />
@@ -164,7 +164,7 @@ const Navbar = () => {
                       {profile?.role === 'admin' && (
                         <Link
                           to="/admin"
-                          className="flex items-center px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                          className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                           onClick={() => setIsProfileMenuOpen(false)}
                         >
                           <Settings className="w-4 h-4 mr-2" />
@@ -176,7 +176,7 @@ const Navbar = () => {
                           handleLogout();
                           setIsProfileMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm hover:bg-yellow-500 hover:text-black transition"
+                        className="flex items-center w-full px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Logout
@@ -301,7 +301,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 text-center rounded-md bg-yellow-500 text-black hover:bg-yellow-600"
+                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Profile
@@ -309,7 +309,7 @@ const Navbar = () => {
                   {profile?.role === 'admin' && (
                     <Link
                       to="/admin"
-                      className="block px-4 py-2 text-center rounded-md bg-yellow-500 text-black hover:bg-yellow-600"
+                      className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Admin Panel
@@ -329,7 +329,7 @@ const Navbar = () => {
                 <>
                   <Link 
                     to="/login" 
-                    className="block px-4 py-2 text-center rounded-md bg-yellow-500 text-black hover:bg-yellow-600"
+                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Masuk
