@@ -272,17 +272,17 @@ const Users = () => {
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-900/50">
               <tr>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Pengguna</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Kontak</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
-                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tanggal Lahir</th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Pengguna</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Kontak</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
+                 <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
+                  <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
+                  <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tanggal Lahir</th>
+                  <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
+                <th className="px-4 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -306,7 +306,7 @@ const Users = () => {
                     key={user.id}
                     className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-200"
                   >
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
                         <ProfileImage
                           src={user.profile_photo}
@@ -322,7 +322,7 @@ const Users = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="space-y-1">
                         {user.whatsapp && (
                           <div className="flex items-center gap-2 text-black dark:text-white">
@@ -338,47 +338,47 @@ const Users = () => {
                         )}
                       </div>
                     </td>
-                     <td className="px-6 py-4 whitespace-nowrap">
+                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-black dark:text-white">
                         {user.height ?  `${user.height} cm` : '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div  className="text-black dark:text-white">
                         {user.weight ? `${user.weight} kg` : '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4">
                       <div className="text-black dark:text-white">
                         {user.institution || '-'}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-4">
                       <div className="text-black dark:text-white text-xs">
                         {getTrainingLocationText(user)}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-4">
                       <div  className="text-black dark:text-white text-xs">
-                        {user.gender || '-'}
+                        {user.gender === 'male' ? 'Laki-Laki' : user.gender === 'female' ? 'Perempuan' : '-'}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-4">
                       <div  className="text-black dark:text-white text-xs">
                        {formatDate(user.birth_date)}
                       </div>
                     </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-4">
                       <div  className="text-black dark:text-white text-xs">
                         {getAchievementsText(user)}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4">
                       <div className="text-black dark:text-white">
                         {user.address || '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <select
                           value={user.role}
