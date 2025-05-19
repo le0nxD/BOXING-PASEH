@@ -193,7 +193,6 @@ const Users = () => {
     document.body.removeChild(link);
   };
 
-
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
   const getPageNumbers = () => {
