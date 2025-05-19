@@ -2,25 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import {
   Search,
-  Filter,
   Edit2,
   Trash2,
   Award,
-  Shield,
   User,
-  MapPin,
   Phone,
   Instagram,
-  Building2,
-  PersonStanding as HeightIcon,
-  Weight as WeightIcon,
-  Clock,
   ChevronLeft,
   ChevronRight,
   Download,
-  Calendar,
-  Venus,
-  Mars,
 } from 'lucide-react';
 import ProfileImage from '../../components/ProfileImage';
 
@@ -29,14 +19,23 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
+// Map English days to Indonesian
+const dayTranslations = {
+  'Monday': 'Senin',
+  'Tuesday': 'Selasa',
+  'Wednesday': 'Rabu',
+  'Thursday': 'Kamis',
+  'Friday': 'Jumat',
+  'Saturday': 'Sabtu',
+  'Sunday': 'Minggu'
+};
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [showUserModal, setShowUserModal] = useState(false);
   const [roleFilter, setRoleFilter] = useState('all');
   const [deleting, setDeleting] = useState(false);
   const itemsPerPage = 10;
@@ -50,7 +49,7 @@ const Users = () => {
       setLoading(true);
       let query = supabase
         .from('profiles')
-        .select('*', { count: 'exact' });
+        .select('*, user_schedules(training_schedules(day_of_week))', { count: 'exact' });
 
       // Apply search filter
       if (searchTerm) {
@@ -208,6 +207,19 @@ const Users = () => {
     return user.achievements.map(achievement => `${achievement.title} (${achievement.year})`).join(', ');
   };
 
+  const getUserTrainingDays = (user) => {
+    if (!user.user_schedules || user.user_schedules.length === 0) {
+      return '-';
+    }
+
+    const days = user.user_schedules.map(schedule => {
+      const dayOfWeek = schedule.training_schedules?.day_of_week || '';
+      return dayTranslations[dayOfWeek] || dayOfWeek; // Translate to Indonesian
+    });
+
+    return days.join(', ');
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -281,6 +293,7 @@ const Users = () => {
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lahir</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Jadwal Latihan</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
@@ -288,7 +301,7 @@ const Users = () => {
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {loading ? (
                 <tr>
-                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={12} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     <div className="flex justify-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black dark:border-white"></div>
                     </div>
@@ -296,7 +309,7 @@ const Users = () => {
                 </tr>
               ) : users.length === 0 ? (
                 <tr>
-                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={12} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     Tidak ada pengguna ditemukan
                   </td>
                 </tr>
@@ -370,6 +383,11 @@ const Users = () => {
                      <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {getAchievementsText(user)}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
+                      <div className="text-black dark:text-white">
+                        {getUserTrainingDays(user)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-md">
