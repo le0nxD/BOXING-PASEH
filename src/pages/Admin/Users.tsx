@@ -2,14 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import {
   Search,
+  Filter,
   Edit2,
   Trash2,
   Award,
+  Shield,
+  User,
+  MapPin,
   Phone,
   Instagram,
-  Download,
+  Building2,
+  PersonStanding as HeightIcon,
+  Weight as WeightIcon,
+  Clock,
   ChevronLeft,
   ChevronRight,
+  Download,
+  Calendar,
+  Venus,
+  Mars,
 } from 'lucide-react';
 import ProfileImage from '../../components/ProfileImage';
 
@@ -24,6 +35,8 @@ const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showUserModal, setShowUserModal] = useState(false);
   const [roleFilter, setRoleFilter] = useState('all');
   const [deleting, setDeleting] = useState(false);
   const itemsPerPage = 10;
@@ -37,7 +50,7 @@ const Users = () => {
       setLoading(true);
       let query = supabase
         .from('profiles')
-        .select('*, training_schedules(day_of_week)', { count: 'exact' });
+        .select('*', { count: 'exact' });
 
       // Apply search filter
       if (searchTerm) {
@@ -98,6 +111,7 @@ const Users = () => {
 
       // Update local state
       setUsers(users.filter(user => user.id !== userId));
+      setShowUserModal(false);
       
       // Refresh the user list
       fetchUsers();
@@ -194,12 +208,6 @@ const Users = () => {
     return user.achievements.map(achievement => `${achievement.title} (${achievement.year})`).join(', ');
   };
 
-  const getTrainingDays = (user) => {
-    // Assuming training_schedules is an array of objects with a day_of_week property
-    if (!user?.training_schedules || user?.training_schedules.length === 0) return '-';
-    return user.training_schedules.map(schedule => schedule.day_of_week).join(', ');
-  };
-
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -270,7 +278,6 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
-                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Hari Latihan</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lahir</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
@@ -308,7 +315,7 @@ const Users = () => {
                         />
                         <div>
                           <div className="font-medium text-black dark:text-white">{user.full_name}</div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                          <div className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
                             {new Date(user.created_at).toLocaleDateString()}
                           </div>
                         </div>
@@ -348,11 +355,6 @@ const Users = () => {
                      <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {getTrainingLocationText(user)}
-                      </div>
-                    </td>
-                     <td className="px-6 py-4 whitespace-nowrap text-md">
-                      <div className="text-black dark:text-white">
-                        {getTrainingDays(user)}
                       </div>
                     </td>
                      <td className="px-6 py-4 whitespace-nowrap text-md">
