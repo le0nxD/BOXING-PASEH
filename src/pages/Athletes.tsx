@@ -180,7 +180,7 @@ const Athletes = () => {
                           {athlete.achievements?.map((achievement, index) => (
                             <span
                               key={index}
-className="inline-flex items-center px-2 py-1 bg-gray-300 dark:bg-gray-500 text-gray-900 dark:text-gray-100 text-xs rounded-full"
+className="inline-flex items-center px-2 py-1 bg-gray-400 dark:bg-gray-600 text-gray-900 dark:text-gray-100 text-xs rounded-full"
                             >
                               <Medal className="w-3 h-3 mr-1" />
                               {achievement.title}
