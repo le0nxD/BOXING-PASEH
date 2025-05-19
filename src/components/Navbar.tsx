@@ -84,13 +84,13 @@ const Navbar = () => {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Beranda</Link>
-            <Link to="/registration" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Pendaftaran</Link>
+            <Link to="/" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity">Beranda</Link>
+            <Link to="/registration" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity">Pendaftaran</Link>
             
             {/* Team Dropdown */}
             <div className="relative">
               <button 
-                className="flex items-center space-x-1 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                className="flex items-center space-x-1 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                 onClick={() => setIsTeamMenuOpen(!isTeamMenuOpen)}
                 onMouseEnter={() => setIsTeamMenuOpen(true)}
               >
@@ -106,21 +106,21 @@ const Navbar = () => {
                 >
                   <Link 
                     to="/officials" 
-                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Official
                   </Link>
                   <Link 
                     to="/coaches" 
-                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Pelatih
                   </Link>
                   <Link 
                     to="/athletes" 
-                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                    className="block px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                     onClick={() => setIsTeamMenuOpen(false)}
                   >
                     Atlet
@@ -129,9 +129,9 @@ const Navbar = () => {
               )}
             </div>
             
-            <Link to="/gallery" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Dokumentasi</Link>
-            <Link to="/merchandise" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Merchandise</Link>
-            <Link to="/about" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Tentang</Link>
+            <Link to="/gallery" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity">Dokumentasi</Link>
+            <Link to="/merchandise" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity">Merchandise</Link>
+            <Link to="/about" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity">Tentang</Link>
             
             <div className="flex items-center space-x-4">
               <ThemeToggle />
@@ -140,7 +140,7 @@ const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                    className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                   >
                     <ProfileImage
                       src={profile?.profile_photo}
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
                       <Link
                         to="/profile"
-                        className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                        className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                         onClick={() => setIsProfileMenuOpen(false)}
                       >
                         <User className="w-4 h-4 mr-2" />
@@ -164,7 +164,7 @@ const Navbar = () => {
                       {profile?.role === 'admin' && (
                         <Link
                           to="/admin"
-                          className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                          className="flex items-center px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                           onClick={() => setIsProfileMenuOpen(false)}
                         >
                           <Settings className="w-4 h-4 mr-2" />
@@ -176,7 +176,7 @@ const Navbar = () => {
                           handleLogout();
                           setIsProfileMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black transition"
+                        className="flex items-center w-full px-4 py-2 text-sm hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black transition"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Logout
@@ -188,13 +188,13 @@ const Navbar = () => {
                 <div className="flex items-center space-x-2">
                   <Link 
                     to="/login" 
-                    className="px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                   >
                     Masuk
                   </Link>
                   <Link 
                     to="/register" 
-                    className="px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="px-4 py-2 rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                   >
                     Daftar
                   </Link>
@@ -208,7 +208,7 @@ const Navbar = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-800 dark:text-white hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="text-gray-800 dark:text-white hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -220,21 +220,21 @@ const Navbar = () => {
           <div className="md:hidden py-4">
             <Link 
               to="/" 
-              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Beranda
             </Link>
             <Link 
               to="/registration" 
-              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Pendaftaran
             </Link>
             <div className="py-2">
               <button 
-                className="flex items-center hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                className="flex items-center hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                 onClick={() => setIsTeamMenuOpen(!isTeamMenuOpen)}
               >
                 <span>Tim</span>
@@ -244,7 +244,7 @@ const Navbar = () => {
                 <div className="pl-4 mt-2">
                   <Link 
                     to="/officials" 
-                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -254,7 +254,7 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/coaches" 
-                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -264,7 +264,7 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/athletes" 
-                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -277,21 +277,21 @@ const Navbar = () => {
             </div>
             <Link 
               to="/gallery" 
-              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Galeri
             </Link>
             <Link 
               to="/merchandise" 
-              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Merchandise
             </Link>
             <Link 
               to="/about" 
-              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tentang
@@ -301,7 +301,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
+                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Profile
@@ -309,7 +309,7 @@ const Navbar = () => {
                   {profile?.role === 'admin' && (
                     <Link
                       to="/admin"
-                      className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
+                      className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity text-black"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Admin Panel
@@ -329,7 +329,7 @@ const Navbar = () => {
                 <>
                   <Link 
                     to="/login" 
-                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity text-black"
+                    className="block px-4 py-2 text-center rounded-md bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 dark:text-white hover:opacity-90 transition-opacity"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Masuk
