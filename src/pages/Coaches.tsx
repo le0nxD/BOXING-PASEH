@@ -118,7 +118,7 @@ const Coaches = () => {
                         key={achievementIndex} 
                         className="flex items-center gap-2"
                       >
-                        <Award className="w-4 h-4 text-yellow-400" />
+                       <Award className="w-5 h-5 text-gray-800 dark:text-gray-100" />
                         <span className="text-sm text-white/90">{achievement}</span>
                       </div>
                     ))}
