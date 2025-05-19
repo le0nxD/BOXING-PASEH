@@ -48,7 +48,7 @@ const Users = () => {
       setLoading(true);
       let query = supabase
         .from('profiles')
-        .select('*', { count: 'exact' });
+        .select('*, training_location, gender, birth_date, achievements', { count: 'exact' });
 
       // Apply search filter
       if (searchTerm) {
@@ -183,6 +183,12 @@ const Users = () => {
     return pageNumbers;
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return '-';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('id-ID');
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -252,6 +258,10 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi Latihan</th>
+                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Jenis Kelamin</th>
+                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tanggal Lahir</th>
+                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
@@ -259,7 +269,7 @@ const Users = () => {
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     <div className="flex justify-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black dark:border-white"></div>
                     </div>
@@ -267,7 +277,7 @@ const Users = () => {
                 </tr>
               ) : users.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     Tidak ada pengguna ditemukan
                   </td>
                 </tr>
@@ -322,6 +332,26 @@ const Users = () => {
                     <td className="px-6 py-4">
                       <div className="text-black dark:text-white">
                         {user.institution || '-'}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4">
+                      <div className="text-black dark:text-white">
+                        {user.training_location || '-'}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4">
+                      <div className="text-black dark:text-white">
+                        {user.gender || '-'}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4">
+                      <div className="text-black dark:text-white">
+                       {formatDate(user.birth_date)}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4">
+                      <div className="text-black dark:text-white">
+                        {user.achievements || '-'}
                       </div>
                     </td>
                     <td className="px-6 py-4">
