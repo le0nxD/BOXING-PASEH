@@ -199,7 +199,6 @@ const Users = () => {
     return escapedField;
   };
 
-
   // Function to escape CSV fields
   const escapeCsvField = (field) => {
     if (field === null || field === undefined) {
