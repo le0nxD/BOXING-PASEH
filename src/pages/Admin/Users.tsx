@@ -1,4 +1,4 @@
- import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import {
   Search,
@@ -13,8 +13,6 @@ import {
   Download,
 } from 'lucide-react';
 import ProfileImage from '../../components/ProfileImage';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -142,7 +140,7 @@ const Users = () => {
     }
   };
 
-   const exportUsers = () => {
+    const exportUsers = () => {
     const headers = [
       "Pengguna",
       "Kontak",
@@ -157,7 +155,7 @@ const Users = () => {
       "Alamat",
     ];
 
-    const data = users.map(user => [
+    const csvRows = users.map(user => [
       user.full_name,
       `${user.whatsapp || '-'} ${user.instagram || '-'}`,
       user.height || '-',
@@ -169,19 +167,36 @@ const Users = () => {
       getAchievementsText(user) || '-',
       getUserTrainingDays(user) || '-',
       user.address || '-',
-    ]);
+    ].map(escapeCsvField).join(','));
 
-    // Create a new PDF document
-    const doc = new jsPDF();
+    const csvContent = [
+      headers.join(','),
+      ...csvRows
+    ].join('\n');
 
-    // Add the table to the PDF
-    (doc as any).autoTable({
-      head: [headers],
-      body: data,
-    });
+    // Tambahkan UTF-8 BOM
+    const bom = '\uFEFF';
+    const csvData = bom + csvContent;
 
-    // Trigger the download
-    doc.save("users.pdf");
+    const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
+    const link = document.createElement("a");
+    link.setAttribute("href", dataUri);
+    link.setAttribute("download", "users.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Fungsi untuk escape field CSV
+  const escapeCsvField = (field) => {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    let escapedField = String(field).replace(/"/g, '""');
+    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
+      escapedField = `"${escapedField}"`;
+    }
+    return escapedField;
   };
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
