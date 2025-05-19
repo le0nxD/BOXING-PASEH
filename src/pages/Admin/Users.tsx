@@ -191,10 +191,8 @@ const Users = () => {
     return date.toLocaleDateString('id-ID');
   };
 
-  const getTrainingLocationText = (user) => {
-    if (user?.training_location === 'sasana') return 'Latihan di Sasana';
-    if (user?.training_location === 'private') return 'Latihan Privat';
-    return '-';
+   const formatTrainingDays = (user) => {
+    return user?.training_days?.join(', ') || '-';
   };
 
   const getGenderText = (user) => {
@@ -277,7 +275,8 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
-                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi Latihan</th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Hari Latihan</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lahir</th>
                   <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
@@ -288,7 +287,7 @@ const Users = () => {
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {loading ? (
                 <tr>
-                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={12} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     <div className="flex justify-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black dark:border-white"></div>
                     </div>
@@ -296,7 +295,7 @@ const Users = () => {
                 </tr>
               ) : users.length === 0 ? (
                 <tr>
-                  <td colSpan={11} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan={12} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                     Tidak ada pengguna ditemukan
                   </td>
                 </tr>
@@ -355,6 +354,11 @@ const Users = () => {
                      <td className="px-6 py-4 whitespace-nowrap text-md">
                       <div className="text-black dark:text-white">
                         {getTrainingLocationText(user)}
+                      </div>
+                    </td>
+                     <td className="px-6 py-4 whitespace-nowrap text-md">
+                       <div className="text-black dark:text-white">
+                        {formatTrainingDays(user)}
                       </div>
                     </td>
                      <td className="px-6 py-4 whitespace-nowrap text-md">
