@@ -141,29 +141,62 @@ const Users = () => {
   };
 
   const exportUsers = () => {
-    const csv = users.map(user => ({
-      name: user.full_name,
-      role: user.role,
-      email: user.email,
-      whatsapp: user.whatsapp,
-      instagram: user.instagram,
-      institution: user.institution,
-      address: user.address,
-      created_at: user.created_at
-    }));
+    const headers = [
+      "Full Name",
+      "Role",
+      "Email",
+      "WhatsApp",
+      "Instagram",
+      "Institution",
+      "Address",
+      "Birth Date",
+      "Training Days",
+      "Created At"
+    ];
 
-    const csvContent = "data:text/csv;charset=utf-8," + 
-      Object.keys(csv[0]).join(",") + "\n" +
-      csv.map(row => Object.values(row).join(",")).join("\n");
+    const csvRows = users.map(user => [
+      user.full_name,
+      user.role,
+      user.email,
+      user.whatsapp,
+      user.instagram,
+      user.institution,
+      user.address,
+      user.birth_date ? formatDate(user.birth_date) : '',
+      getUserTrainingDays(user),
+      formatDate(user.created_at)
+    ].map(escapeCsvField).join(','));
 
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = [
+      headers.join(','),
+      ...csvRows
+    ].join('\n');
+
+    // Add UTF-8 BOM
+    const bom = '\uFEFF';
+    const csvData = bom + csvContent;
+
+    const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href", dataUri);
     link.setAttribute("download", "users.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+
+  // Function to escape CSV fields
+  const escapeCsvField = (field) => {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    let escapedField = String(field).replace(/"/g, '""');
+    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
+      escapedField = `"${escapedField}"`;
+    }
+    return escapedField;
+  };
+
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
