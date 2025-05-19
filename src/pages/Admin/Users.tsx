@@ -141,25 +141,63 @@ const Users = () => {
   };
 
   const exportUsers = () => {
-    const csv = users.map(user => ({
-      name: user.full_name,
-      role: user.role,
-      email: user.email,
-      whatsapp: user.whatsapp,
-      instagram: user.instagram,
-      institution: user.institution,
-      address: user.address,
-      created_at: user.created_at
-    }));
+    let table = `
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>WhatsApp</th>
+            <th>Instagram</th>
+            <th>Institution</th>
+            <th>Address</th>
+            <th>Birth Date</th>
+            <th>Training Days</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
 
-    const csvContent = "data:text/csv;charset=utf-8," + 
-      Object.keys(csv[0]).join(",") + "\n" +
-      csv.map(row => Object.values(row).join(",")).join("\n");
+    users.forEach(user => {
+      table += `
+        <tr>
+          <td>${user.full_name || '-'}</td>
+          <td>${user.role || '-'}</td>
+          <td>${user.email || '-'}</td>
+          <td>${user.whatsapp || '-'}</td>
+          <td>${user.instagram || '-'}</td>
+          <td>${user.institution || '-'}</td>
+          <td>${user.address || '-'}</td>
+          <td>${user.birth_date ? new Date(user.birth_date).toLocaleDateString('id-ID') : '-'}</td>
+          <td>${getUserTrainingDays(user) || '-'}</td>
+          <td>${new Date(user.created_at).toLocaleDateString('id-ID')}</td>
+        </tr>
+      `;
+    });
 
-    const encodedUri = encodeURI(csvContent);
+    table += `
+        </tbody>
+      </table>
+    `;
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>User Data</title>
+      </head>
+      <body>
+        ${table}
+      </body>
+      </html>
+    `;
+
+    const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "users.csv");
+    link.setAttribute("href", dataUri);
+    link.setAttribute("download", "users.html");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
