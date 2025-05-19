@@ -277,10 +277,30 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lahir</th>
-                <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
+                    <div className="flex items-center">
+                      Lokasi
+                      <MapPin className="w-4 h-4 ml-1" />
+                    </div>
+                  </th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
+                    <div className="flex items-center">
+                      Gender
+                      <User className="w-4 h-4 ml-1" />
+                    </div>
+                  </th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
+                    <div className="flex items-center">
+                      Lahir
+                      <Calendar className="w-4 h-4 ml-1" />
+                    </div>
+                  </th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
+                    <div className="flex items-center">
+                      Prestasi
+                      <Award className="w-4 h-4 ml-1" />
+                    </div>
+                  </th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
