@@ -140,75 +140,64 @@ const Users = () => {
     }
   };
 
-   --- a/src/pages/Users.tsx
-+++ b/src/pages/Users.tsx
-@@ -138,11 +138,11 @@
-     }
-   };
- 
--    const exportUsers = () => {
--    const headers = [
--      "Pengguna",
--      "Kontak",
--      "Tinggi",
-+  const exportUsers = () => {
-+    const headers = [
-+      'Pengguna',
-+      'Kontak',
-+      'Tinggi',
-       "Berat",
-       "Institusi",
-       "Lokasi",
-@@ -153,10 +153,10 @@
-       "Alamat",
-     ];
- 
--    const csvRows = users.map(user => [
-+    const tableRows = users.map(user => `<tr>
-       user.full_name,
-       `${user.whatsapp || '-'} ${user.instagram || '-'}`,
--      user.height || '-',
-+      `${user.height || '-'}`,
-       user.weight || '-',
-       user.institution || '-',
-       getTrainingLocationText(user) || '-',
-@@ -165,13 +165,13 @@
-       getAchievementsText(user) || '-',
-       getUserTrainingDays(user) || '-',
-       user.address || '-',
--    ].map(escapeCsvField).join(','));
-+    </tr>`).join('');
- 
--    const csvContent = [
--      headers.join(','),
--      ...csvRows
--    ].join('\n');
-+    const htmlContent = `<!DOCTYPE html><html><head><title>Data Pengguna</title></head><body><table border="1"><thead><tr>${headers.map(header => `<th>${header}</th>`).join('')}</tr></thead><tbody>${tableRows}</tbody></table></body></html>`;
- 
-+
-+
-+
-     // Tambahkan UTF-8 BOM
-     const bom = '\uFEFF';
-     const csvData = bom + csvContent;
-@@ -184,17 +184,6 @@
-     document.body.removeChild(link);
-   };
- 
--  // Fungsi untuk escape field CSV
--  const escapeCsvField = (field) => {
--    if (field === null || field === undefined) {
--      return '';
--    }
--    let escapedField = String(field).replace(/"/g, '""');
--    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
--      escapedField = `"${escapedField}"`;
--    }
--    return escapedField;
--  };
- 
- 
-   const totalPages = Math.ceil(totalUsers / itemsPerPage);
+    const exportUsers = () => {
+    const headers = [
+      "Pengguna",
+      "Kontak",
+      "Tinggi",
+      "Berat",
+      "Institusi",
+      "Lokasi",
+      "Gender",
+      "Lahir",
+      "Prestasi",
+      "Jadwal Latihan",
+      "Alamat",
+    ];
+
+    const csvRows = users.map(user => [
+      user.full_name,
+      `${user.whatsapp || '-'} ${user.instagram || '-'}`,
+      user.height || '-',
+      user.weight || '-',
+      user.institution || '-',
+      getTrainingLocationText(user) || '-',
+      getGenderText(user) || '-',
+      user.birth_date ? formatDate(user.birth_date) : '-',
+      getAchievementsText(user) || '-',
+      getUserTrainingDays(user) || '-',
+      user.address || '-',
+    ].map(escapeCsvField).join(','));
+
+    const csvContent = [
+      headers.join(','),
+      ...csvRows
+    ].join('\n');
+
+    // Tambahkan UTF-8 BOM
+    const bom = '\uFEFF';
+    const csvData = bom + csvContent;
+
+    const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
+    const link = document.createElement("a");
+    link.setAttribute("href", dataUri);
+    link.setAttribute("download", "users.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Fungsi untuk escape field CSV
+  const escapeCsvField = (field) => {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    let escapedField = String(field).replace(/"/g, '""');
+    if (escapedField.includes(',') || escapedField.includes('"') || escapedField.includes('\n')) {
+      escapedField = `"${escapedField}"`;
+    }
+    return escapedField;
+  };
 
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
