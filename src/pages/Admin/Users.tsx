@@ -199,6 +199,61 @@ const Users = () => {
     return escapedField;
   };
 
+   const exportUsersToHtml = () => {
+    const headers = [
+      "Pengguna",
+      "Kontak",
+      "Tinggi",
+      "Berat",
+      "Institusi",
+      "Lokasi",
+      "Gender",
+      "Lahir",
+      "Prestasi",
+      "Jadwal Latihan",
+      "Alamat",
+    ];
+
+    const tableRows = users.map(user => [
+      user.full_name,
+      `${user.whatsapp || '-'} ${user.instagram || '-'}`,
+      user.height || '-',
+      user.weight || '-',
+      user.institution || '-',
+      getTrainingLocationText(user) || '-',
+      getGenderText(user) || '-',
+      user.birth_date ? formatDate(user.birth_date) : '-',
+      getAchievementsText(user) || '-',
+      getUserTrainingDays(user) || '-',
+      user.address || '-',
+    ]);
+
+    // Generate HTML table
+    let htmlContent = "<table border='1'>";
+    htmlContent += "<thead><tr>";
+    headers.forEach(header => {
+      htmlContent += `<th>${header}</th>`;
+    });
+    htmlContent += "</tr></thead><tbody>";
+    tableRows.forEach(row => {
+      htmlContent += "<tr>";
+      row.forEach(cell => {
+        htmlContent += `<td>${cell}</td>`;
+      });
+      htmlContent += "</tr>";
+    });
+    htmlContent += "</tbody></table>";
+
+    // Create a download link
+    const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", dataUri);
+    link.setAttribute("download", "users.html");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
 
   const getPageNumbers = () => {
@@ -271,6 +326,14 @@ const Users = () => {
             <Download className="w-5 h-5" />
             Unduh Data Pengguna
           </button>
+           <button
+            onClick={exportUsersToHtml}
+            className="px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+          >
+            <Download className="w-5 h-5" />
+            Unduh Data Pengguna (HTML)
+          </button>
+
         </div>
       </div>
 
