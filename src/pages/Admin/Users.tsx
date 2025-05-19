@@ -277,30 +277,10 @@ const Users = () => {
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tinggi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Berat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Institusi</th>
-                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Lokasi
-                      <MapPin className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Gender
-                      <User className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Lahir
-                      <Calendar className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
-                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">
-                    <div className="flex items-center">
-                      Prestasi
-                      <Award className="w-4 h-4 ml-1" />
-                    </div>
-                  </th>
+                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Lokasi</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Gender</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Tanggal Lahir</th>
+                  <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Prestasi</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Alamat</th>
                 <th className="px-6 py-3.5 text-left text-sm font-semibold text-black dark:text-white">Aksi</th>
               </tr>
@@ -374,24 +354,22 @@ const Users = () => {
                       </div>
                     </td>
                      <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-black dark:text-white">
-                         <MapPin className="w-4 h-4 text-gray-400" />
+                      <div className="text-black dark:text-white text-xs">
                         {getTrainingLocationText(user)}
                       </div>
                     </td>
                      <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-black dark:text-white">
-                        {getGenderIcon(user)}
+                      <div  className="text-black dark:text-white text-xs">
                         {user.gender || '-'}
                       </div>
                     </td>
                      <td className="px-6 py-4">
-                      <div className="text-black dark:text-white">
+                      <div  className="text-black dark:text-white text-xs">
                        {formatDate(user.birth_date)}
                       </div>
                     </td>
                      <td className="px-6 py-4">
-                      <div className="text-black dark:text-white">
+                      <div  className="text-black dark:text-white text-xs">
                         {getAchievementsText(user)}
                       </div>
                     </td>
