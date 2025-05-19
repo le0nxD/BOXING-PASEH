@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-gradient {
+  animation: gradient-shift 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+body {
+  @apply bg-white dark:bg-gray-900;
+}
+
+.slick-dots li button:before {
+  @apply text-gray-800 dark:text-white;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  @apply text-black dark:text-white text-3xl;
+}
+
+/* Custom styles for product modal slider */
+.product-slider .slick-prev,
+.product-slider .slick-next {
+  @apply w-10 h-10 bg-white/90 dark:bg-black/90 rounded-full flex items-center justify-center z-10 transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black before:content-none;
+}
+
+.product-slider .slick-prev {
+  @apply left-4;
+}
+
+.product-slider .slick-next {
+  @apply right-4;
+}
+
+.product-slider .slick-dots {
+  @apply bottom-4;
+}
+
+.product-slider .slick-dots li {
+  @apply w-2 h-2 mx-1;
+}
+
+.product-slider .slick-dots li button {
+  @apply w-2 h-2 p-0;
+}
+
+.product-slider .slick-dots li button:before {
+  @apply w-2 h-2 text-base opacity-50 bg-white rounded-full content-[''] transition-all duration-300;
+}
+
+.product-slider .slick-dots li.slick-active button:before {
+  @apply bg-black dark:bg-white opacity-100 scale-150;
+}
+
+/* Product image zoom effect */
+.zoom-image-container {
+  @apply relative overflow-hidden cursor-zoom-in;
+}
+
+.zoom-image {
+  @apply transition-transform duration-200 ease-out;
+  transform-origin: center;
+}
+
+.zoom-image.zoomed {
+  @apply cursor-zoom-out;
+  transform: scale(1.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black dark:bg-white hover:bg-gray-700 dark:hover:bg-gray-300 rounded-full transition-colors duration-300;
+}
+
+/* Modal scrollbar */
+.modal-content::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  @apply bg-black dark:bg-white hover:bg-gray-700 dark:hover:bg-gray-300 rounded-full transition-colors duration-300;
+}
+
+/* Product card hover effect */
+.product-card {
+  @apply relative overflow-hidden;
+}
+
+.product-card::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.product-card:hover::after {
+  @apply opacity-100;
+}
+
+/* Product modal animation */
+.product-modal {
+  animation: modalFade 0.3s ease-out;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Size selector */
+.size-selector {
+  @apply flex items-center justify-center w-12 h-12 rounded-lg border-2 transition-all duration-300 cursor-pointer;
+}
+
+.size-selector.active {
+  @apply border-black dark:border-white bg-black dark:bg-white text-white dark:text-black;
+}
+
+.size-selector:not(.active) {
+  @apply border-gray-300 dark:border-gray-700 hover:border-black dark:hover:border-white;
+}
+
+/* Quantity selector */
+.quantity-btn {
+  @apply w-12 h-12 flex items-center justify-center rounded-lg border-2 transition-all duration-300;
+}
+
+.quantity-btn:not(:disabled) {
+  @apply hover:border-black dark:hover:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black;
+}
+
+.quantity-btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Product features list */
+.feature-list {
+  @apply space-y-2 text-sm text-gray-600 dark:text-gray-400;
+}
+
+.feature-item {
+  @apply flex items-center gap-2;
+}
+
+.feature-item::before {
+  content: '';
+  @apply w-1.5 h-1.5 rounded-full bg-black dark:bg-white;
+}
