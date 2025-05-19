@@ -182,7 +182,7 @@ const Athletes = () => {
                               key={index}
 className="inline-flex items-center px-2 py-1 bg-gray-400 dark:bg-gray-600 text-gray-900 dark:text-gray-100 text-xs rounded-full"
                             >
-                              <Medal className="w-3 h-3 mr-1" />
+                              <Medal className="w-3 h-3 mr-1 text-yellow-500 dark:text-yellow-300" />
                               {achievement.title}
                             </span>
                           ))}
