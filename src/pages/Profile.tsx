@@ -425,6 +425,22 @@ const Profile = () => {
                       />
                     </div>
 
+                    {/* Training Location Select */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Lokasi Latihan
+                      </label>
+                      <select
+                        value={user.training_location}
+                        onChange={(e) => setUser({ ...user, training_location: e.target.value })}
+                        className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-black dark:text-white border border-gray-200 dark:border-gray-600"
+                      >
+                        <option value="">Pilih Lokasi Latihan</option>
+                        <option value="sasana">Latihan di Sasana</option>
+                        <option value="private">Latihan Privat</option>
+                      </select>
+                    </div>
+
                     <button
                       type="submit"
                       disabled={saving}
