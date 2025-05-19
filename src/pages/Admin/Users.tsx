@@ -142,20 +142,20 @@ const Users = () => {
 
     const exportUsers = () => {
     const headers = [
-      "Nama Lengkap",
-      "Peran",
+      "Full Name",
+      "Role",
       "Email",
       "WhatsApp",
       "Instagram",
-      "Institusi",
-      "Alamat",
-      "Tanggal Lahir",
-      "Hari Latihan",
-      "Dibuat Pada",
-      "Tinggi", // baru
-      "Berat", // baru
-      "Prestasi", // baru
-      "Jenis Kelamin" // baru
+      "Institution",
+      "Address",
+      "Birth Date",
+      "Training Days",
+      "Created At",
+      "Tinggi", // new
+      "Berat", // new
+      "Prestasi", // new
+      "Gender" // new
     ];
 
     const csvRows = users.map(user => [
@@ -169,10 +169,10 @@ const Users = () => {
       user.birth_date ? formatDate(user.birth_date) : '',
       getUserTrainingDays(user),
       formatDate(user.created_at),
-      user.height || '', // baru
-      user.weight || '', // baru
-      getAchievementsText(user) || '', // baru
-      getGenderText(user) || '' // baru
+      user.height || '', // new
+      user.weight || '', // new
+      getAchievementsText(user) || '', // new
+      getGenderText(user) || '' // new
     ].map(escapeCsvField).join(','));
 
     const csvContent = [
@@ -180,7 +180,7 @@ const Users = () => {
       ...csvRows
     ].join('\n');
 
-    // Tambahkan UTF-8 BOM
+    // Add UTF-8 BOM
     const bom = '\uFEFF';
     const csvData = bom + csvContent;
 
@@ -193,7 +193,7 @@ const Users = () => {
     document.body.removeChild(link);
   };
 
-  // Fungsi untuk escape field CSV
+  // Function to escape CSV fields
   const escapeCsvField = (field) => {
     if (field === null || field === undefined) {
       return '';
