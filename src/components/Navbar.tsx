@@ -84,13 +84,13 @@ const Navbar = () => {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="hover:text-yellow-500 transition">Beranda</Link>
-            <Link to="/registration" className="hover:text-yellow-500 transition">Pendaftaran</Link>
+            <Link to="/" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Beranda</Link>
+            <Link to="/registration" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Pendaftaran</Link>
             
             {/* Team Dropdown */}
             <div className="relative">
               <button 
-                className="flex items-center space-x-1 hover:text-yellow-500 transition"
+                className="flex items-center space-x-1 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
                 onClick={() => setIsTeamMenuOpen(!isTeamMenuOpen)}
                 onMouseEnter={() => setIsTeamMenuOpen(true)}
               >
@@ -129,9 +129,9 @@ const Navbar = () => {
               )}
             </div>
             
-            <Link to="/gallery" className="hover:text-yellow-500 transition">Dokumentasi</Link>
-            <Link to="/merchandise" className="hover:text-yellow-500 transition">Merchandise</Link>
-            <Link to="/about" className="hover:text-yellow-500 transition">Tentang</Link>
+            <Link to="/gallery" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Dokumentasi</Link>
+            <Link to="/merchandise" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Merchandise</Link>
+            <Link to="/about" className="hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity">Tentang</Link>
             
             <div className="flex items-center space-x-4">
               <ThemeToggle />
@@ -208,7 +208,7 @@ const Navbar = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-800 dark:text-white hover:text-yellow-500"
+              className="text-gray-800 dark:text-white hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -220,21 +220,21 @@ const Navbar = () => {
           <div className="md:hidden py-4">
             <Link 
               to="/" 
-              className="block py-2 hover:text-yellow-500"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Beranda
             </Link>
             <Link 
               to="/registration" 
-              className="block py-2 hover:text-yellow-500"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Pendaftaran
             </Link>
             <div className="py-2">
               <button 
-                className="flex items-center hover:text-yellow-500"
+                className="flex items-center hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
                 onClick={() => setIsTeamMenuOpen(!isTeamMenuOpen)}
               >
                 <span>Tim</span>
@@ -244,7 +244,7 @@ const Navbar = () => {
                 <div className="pl-4 mt-2">
                   <Link 
                     to="/officials" 
-                    className="block py-2 hover:text-yellow-500"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -254,7 +254,7 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/coaches" 
-                    className="block py-2 hover:text-yellow-500"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -264,7 +264,7 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/athletes" 
-                    className="block py-2 hover:text-yellow-500"
+                    className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
                     onClick={() => {
                       setIsTeamMenuOpen(false);
                       setIsMobileMenuOpen(false);
@@ -277,21 +277,21 @@ const Navbar = () => {
             </div>
             <Link 
               to="/gallery" 
-              className="block py-2 hover:text-yellow-500"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Galeri
             </Link>
             <Link 
               to="/merchandise" 
-              className="block py-2 hover:text-yellow-500"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Merchandise
             </Link>
             <Link 
               to="/about" 
-              className="block py-2 hover:text-yellow-500"
+              className="block py-2 hover:bg-gradient-to-br from-blue-300 via-blue-200 to-blue-100 dark:from-blue-950 dark:via-gray-800 dark:to-blue-600 hover:opacity-90 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tentang
